@@ -53,7 +53,8 @@ class BookList extends Component {
                 <p>{bookItem.pageCount} pages</p>
                 <p>Average Rating: {bookItem.averageRating}</p>
                 <Card.Description></Card.Description>
-                <Modal trigger={<Button primary>See More</Button>} closeIcon>
+                <Button primary onClick={this.openModal}>See More</Button>
+                <Modal open={this.state.isModalOpen} closeIcon>
                   <Modal.Header><h1>{bookItem.title}{bookItem.subtitle}</h1></Modal.Header>
                   <Modal.Content image scrolling>
                     <Image fluid src={bookItem.thumbnail} alt={bookItem.title} />
@@ -68,7 +69,7 @@ class BookList extends Component {
                     </Modal.Description>
                   </Modal.Content>
                   <Modal.Actions>
-                    <Button primary>
+                    <Button primary onClick={this.closeModal}>
                       <Icon name='chevron left' /> Back
                     </Button>
                   </Modal.Actions>
