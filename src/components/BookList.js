@@ -2,6 +2,28 @@ import React, { Component } from 'react';
 import { Grid, Card, Image, Button, Modal, Header, Icon } from 'semantic-ui-react';
 
 class BookList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isModalOpen: false
+    }
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+  }
+
+  openModal() {
+    this.setState({
+      isModalOpen: true
+    });
+    console.log('isModalOpen:', this.state.isModalOpen);
+  }
+
+  closeModal() {
+    this.setState({
+      isModalOpen: false
+    });
+    console.log('isModalOpen:', this.state.isModalOpen);
+  }
 
   render() {
     const data = this.props.data;
