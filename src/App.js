@@ -43,7 +43,7 @@ class App extends Component {
 
     // make API call to Google Books
     const { submittedSearchTerm } = this.state;
-    const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${submittedSearchTerm}&key=${process.env.development.REACT_APP_API_KEY}`);
+    const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${submittedSearchTerm}&key=${process.env.REACT_APP_API_KEY}`);
 
     if (response.ok) {
       const json = await response.json();
