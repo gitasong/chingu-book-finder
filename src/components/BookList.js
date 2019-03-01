@@ -1,30 +1,8 @@
 import React, { Component } from 'react';
 import BookDetail from './BookDetail';
-import { Grid, Card, Image, Button } from 'semantic-ui-react';
+import { Grid, Card, Image } from 'semantic-ui-react';
 
 class BookList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isModalOpen: false
-    }
-    this.openModal = this.openModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
-  }
-
-  openModal() {
-    this.setState({
-      isModalOpen: true
-    });
-    console.log('isModalOpen:', this.state.isModalOpen);
-  }
-
-  closeModal() {
-    this.setState({
-      isModalOpen: false
-    });
-    console.log('isModalOpen:', this.state.isModalOpen);
-  }
 
   render() {
     const data = this.props.data;
@@ -54,32 +32,9 @@ class BookList extends Component {
                 <p>{bookItem.pageCount} pages</p>
                 <p>Average Rating: {bookItem.averageRating}</p>
                 <Card.Description></Card.Description>
-                <Button primary onClick={this.openModal}>See More</Button>
                 <BookDetail
                   book={bookItem}
-                  isModalOpen={this.state.isModalOpen}
-                  closeModal={this.closeModal}
                 />
-                {/* <Modal open={this.state.isModalOpen} closeIcon>
-                  <Modal.Header><h1>{bookItem.title}{bookItem.subtitle}</h1></Modal.Header>
-                  <Modal.Content image scrolling>
-                    <Image fluid src={bookItem.thumbnail} alt={bookItem.title} />
-
-                    <Modal.Description>
-                      <Header><h2>{bookItem.title}{bookItem.subtitle}</h2></Header>
-                      <h5 className="authors">{bookItem.authors}</h5>
-                      <h6 className="publisher">{bookItem.publisher}</h6>
-                      <p>{bookItem.pageCount} pages</p>
-                      <p>Average Rating: {bookItem.averageRating}</p>
-                      <p>{bookItem.description}</p>
-                    </Modal.Description>
-                  </Modal.Content>
-                  <Modal.Actions>
-                    <Button primary onClick={this.closeModal}>
-                      <Icon name='chevron left' /> Back
-                    </Button>
-                  </Modal.Actions>
-                </Modal> */}
               </Card.Content>
             </Card>
         </Grid.Column>
