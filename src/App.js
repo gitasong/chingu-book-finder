@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { API_KEY } from './config.js';
 import Search from './components/Search';
 import BookList from './components/BookList';
-import { Divider } from 'semantic-ui-react';
+import { Dimmer, Loader, Divider } from 'semantic-ui-react';
 import './App.css';
 
 class App extends Component {
@@ -12,7 +12,8 @@ class App extends Component {
     this.state = {
       searchTerm: '',
       submittedSearchTerm: '',
-      data: []
+      data: [],
+      loading: false
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -27,6 +28,11 @@ class App extends Component {
   }
 
   handleSearch = async () => {
+    // start loader
+    this.setState({
+      loading: true
+    });
+
     // update search term
     const { searchTerm } = this.state;
     await this.setState({
@@ -42,7 +48,8 @@ class App extends Component {
       const json = await response.json();
       console.log(json);
       await this.setState({
-        data: json.items
+        data: json.items,
+        loading: false
       });
       const data = this.state.data;
       console.log('data: %o', data);
@@ -51,7 +58,7 @@ class App extends Component {
   }
 
   render() {
-    const { data } = this.state;
+    const { data, loading } = this.state;
 
     return (
       <div>
@@ -60,6 +67,9 @@ class App extends Component {
           handleSearch={this.handleSearch}
         />
         <Divider hidden />
+        <Dimmer active={loading} inverted>
+          <Loader inverted>Loading</Loader>
+        </Dimmer>
         <BookList data={data} />
       </div>
     );
