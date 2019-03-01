@@ -3,7 +3,7 @@ import { API_KEY } from './config.js';
 import AppHeader from './components/AppHeader';
 import Search from './components/Search';
 import BookList from './components/BookList';
-import { Dimmer, Loader, Divider } from 'semantic-ui-react';
+import { Container, Dimmer, Loader, Divider } from 'semantic-ui-react';
 import './App.css';
 
 class App extends Component {
@@ -62,7 +62,7 @@ class App extends Component {
     const { data, loading } = this.state;
 
     return (
-      <div>
+      <Container>
         <AppHeader />
         <Search
           handleChange={this.handleChange}
@@ -73,7 +73,7 @@ class App extends Component {
           <Loader inverted>Loading</Loader>
         </Dimmer>
         <BookList data={data} />
-      </div>
+      </Container>
     );
   }
 }

@@ -1,3 +1,22 @@
+.app-header {
+  padding-top: 2rem;
+  text-align: center;
+}
+
+.logo span {
+  display: inline-block;
+  font-size: 1.2rem;
+  /* color: #ff9900; */
+}
+
+.ui.icon.header {
+  color: #990033;
+}
+
+.ui.icon.header .icon:last-child {
+  margin-left: 1rem;
+}
+
 .ui.card .meta.authors,
 .ui.cards>.card .meta.authors {
   color: rgba(0,0,0,1.0);
