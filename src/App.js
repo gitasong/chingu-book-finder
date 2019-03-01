@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { API_KEY } from './config.js';
+// import { REACT_APP_API_KEY } from './.env.development.local';
 import AppHeader from './components/AppHeader';
 import Search from './components/Search';
 import BookList from './components/BookList';
@@ -43,7 +43,7 @@ class App extends Component {
 
     // make API call to Google Books
     const { submittedSearchTerm } = this.state;
-    const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${submittedSearchTerm}&key=${API_KEY}`);
+    const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${submittedSearchTerm}&key=${process.env.development.REACT_APP_API_KEY}`);
 
     if (response.ok) {
       const json = await response.json();
