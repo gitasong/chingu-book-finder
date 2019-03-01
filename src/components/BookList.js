@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Grid, Card, Image, Button, Modal, Header, Icon } from 'semantic-ui-react';
+import BookDetail from './BookDetail';
+import { Grid, Card, Image, Button } from 'semantic-ui-react';
 
 class BookList extends Component {
   constructor(props) {
@@ -54,7 +55,12 @@ class BookList extends Component {
                 <p>Average Rating: {bookItem.averageRating}</p>
                 <Card.Description></Card.Description>
                 <Button primary onClick={this.openModal}>See More</Button>
-                <Modal open={this.state.isModalOpen} closeIcon>
+                <BookDetail
+                  book={bookItem}
+                  isModalOpen={this.state.isModalOpen}
+                  closeModal={this.closeModal}
+                />
+                {/* <Modal open={this.state.isModalOpen} closeIcon>
                   <Modal.Header><h1>{bookItem.title}{bookItem.subtitle}</h1></Modal.Header>
                   <Modal.Content image scrolling>
                     <Image fluid src={bookItem.thumbnail} alt={bookItem.title} />
@@ -73,7 +79,7 @@ class BookList extends Component {
                       <Icon name='chevron left' /> Back
                     </Button>
                   </Modal.Actions>
-                </Modal>
+                </Modal> */}
               </Card.Content>
             </Card>
         </Grid.Column>
