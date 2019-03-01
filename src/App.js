@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { API_KEY } from './config.js';
+import AppHeader from './components/AppHeader';
 import Search from './components/Search';
 import BookList from './components/BookList';
 import { Dimmer, Loader, Divider } from 'semantic-ui-react';
@@ -62,6 +63,7 @@ class App extends Component {
 
     return (
       <div>
+        <AppHeader />
         <Search
           handleChange={this.handleChange}
           handleSearch={this.handleSearch}
