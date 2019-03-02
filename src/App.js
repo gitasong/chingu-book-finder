@@ -46,7 +46,7 @@ class App extends Component {
     try {
       const { submittedSearchTerm } = this.state;
       if (submittedSearchTerm) {
-        const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${submittedSearchTerm}&key=${process.env.REACT_APP_API_KEY}`);
+        const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${submittedSearchTerm}&key=${process.env.REACT_APP_API_KEY}&maxResults=40`);
 
         if (response.ok) {
           const json = await response.json();
