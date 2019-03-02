@@ -45,17 +45,39 @@ class App extends Component {
     // make API call to Google Books
     const { submittedSearchTerm } = this.state;
     const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${submittedSearchTerm}&key=${process.env.REACT_APP_API_KEY}`);
+    try {
 
-    if (response.ok) {
-      const json = await response.json();
-      console.log('json:', json);
-      if (json.items) {
-        await this.setState({
-          data: json.items,
-          loading: false
-        });
-        const data = this.state.data;
-        console.log('data: %o', data);
+        if (response.ok) {
+          const json = await response.json();
+          console.log('json:', json);
+          if (json.items) {
+            await this.setState({
+              data: json.items,
+              loading: false,
+              error: ''
+            });
+            const data = this.state.data;
+            console.log('data: %o', data);
+          } else {
+            await this.setState({
+              data: [],
+              loading: false,
+              error: 'No books available for that search.'
+            });
+          }
+        } else if (response.status === 408){
+          await this.setState({
+            data: [],
+            loading: false,
+            error: 'Connection timed out. Please try again.'
+          });
+        } else {
+          await this.setState({
+            data: [],
+            loading: false,
+            error: 'An error has occurred. Please try again.'
+          });
+        }
       } else {
         await this.setState({
           data: [],
@@ -64,7 +86,15 @@ class App extends Component {
         });
       }
     }
-    // TODO: Add error handling
+
+    catch(error) {
+      console.error(error);
+      await this.setState({
+        data: [],
+        loading: false,
+        error: 'An error occurred. Please try again.'
+      });
+    }
   }
 
   render() {
