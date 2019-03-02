@@ -36,3 +36,7 @@
 .ui.modal>.content>.image+.description {
   width: 200%;
 }
+
+.error {
+  color: rgba(0,0,0,.5);
+}
