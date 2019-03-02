@@ -7,6 +7,7 @@ class BookList extends Component {
 
   render() {
     const data = this.props.data;
+
     const bookData = data.map(book => {
       if (book.volumeInfo) {
         return({
@@ -33,7 +34,6 @@ class BookList extends Component {
           description: 'No volume information available.'
         });
       }
-
     });
 
     const bookList = bookData.map(bookItem => {
