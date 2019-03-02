@@ -8,17 +8,32 @@ class BookList extends Component {
   render() {
     const data = this.props.data;
     const bookData = data.map(book => {
-      return({
-        id: book.id,
-        thumbnail: book.volumeInfo.imageLinks.thumbnail || null,
-        title: book.volumeInfo.title,
-        subtitle: book.volumeInfo.subtitle ? ': ' + book.volumeInfo.subtitle : '',
-        authors: book.volumeInfo.authors,
-        publisher: book.volumeInfo.publisher,
-        pageCount: book.volumeInfo.pageCount || '?',
-        averageRating: book.volumeInfo.averageRating || 'No ratings yet',
-        description: book.volumeInfo.description || null
-      });
+      if (book.volumeInfo) {
+        return({
+          id: book.id,
+          thumbnail: book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : noImage,
+          title: book.volumeInfo.title || 'No title available',
+          subtitle: book.volumeInfo.subtitle ? ': ' + book.volumeInfo.subtitle : '',
+          authors: book.volumeInfo.authors || 'No author information available',
+          publisher: book.volumeInfo.publisher || 'No publisher information available',
+          pageCount: book.volumeInfo.pageCount || '?',
+          averageRating: book.volumeInfo.averageRating || 'No ratings yet',
+          description: book.volumeInfo.description || 'No description available.'
+        });
+      } else {
+        return({
+          id: book.id,
+          thumbnail: noImage,
+          title: '',
+          subtitle: '',
+          authors: '',
+          publisher: '',
+          pageCount: '?',
+          averageRating: '',
+          description: 'No volume information available.'
+        });
+      }
+
     });
 
     const bookList = bookData.map(bookItem => {
