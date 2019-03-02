@@ -10,12 +10,16 @@ class BookList extends Component {
 
     const bookData = data.map(book => {
       if (book.volumeInfo) {
+        // breaks multiple authors into two lines on card,
+        // single line w/space in-betwen on modal
+        const authorsArray = book.volumeInfo.authors[1] ? `${book.volumeInfo.authors[0]}\xa0\xa0\xa0 ${book.volumeInfo.authors[1]}` : `${book.volumeInfo.authors[0]}`;
+
         return({
           id: book.id,
           thumbnail: book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : noImage,
           title: book.volumeInfo.title || 'No title available',
           subtitle: book.volumeInfo.subtitle ? ': ' + book.volumeInfo.subtitle : '',
-          authors: book.volumeInfo.authors || 'No author information available',
+          authors: authorsArray || 'No author information available',
           publisher: book.volumeInfo.publisher || 'No publisher information available',
           pageCount: book.volumeInfo.pageCount || '?',
           averageRating: book.volumeInfo.averageRating || 'No ratings yet',
