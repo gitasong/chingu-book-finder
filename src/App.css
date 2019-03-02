@@ -37,7 +37,6 @@
   background-color: #28a745;
 }
 
-
 .ui.primary.button:hover,
 .ui.primary.buttons .button:hover {
     background-color: #23903c;
@@ -53,6 +52,14 @@
 .ui.modal>.content>.image+.description {
   width: 200%;
 }
+
+/* .ui.modal>.content {
+    width: inherit;
+} */
+
+/* .ui.modal>.content>.image {
+    width: initial;
+} */
 
 .error {
   color: rgba(0,0,0,.5);
