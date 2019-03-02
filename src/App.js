@@ -13,8 +13,9 @@ class App extends Component {
     this.state = {
       searchTerm: '',
       submittedSearchTerm: '',
-      data: [],
-      loading: false
+      data: [] || this.state.error,
+      loading: false,
+      error: ''
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -47,19 +48,31 @@ class App extends Component {
 
     if (response.ok) {
       const json = await response.json();
-      console.log(json);
-      await this.setState({
-        data: json.items,
-        loading: false
-      });
-      const data = this.state.data;
-      console.log('data: %o', data);
+      console.log('json:', json);
+      if (json.items) {
+        await this.setState({
+          data: json.items,
+          loading: false
+        });
+        const data = this.state.data;
+        console.log('data: %o', data);
+      } else {
+        await this.setState({
+          data: [],
+          loading: false,
+          error: 'No books available for that search.'
+        });
+      }
     }
     // TODO: Add error handling
   }
 
   render() {
-    const { data, loading } = this.state;
+    const { data, loading, error } = this.state;
+
+    const errorMessage = error
+      ? <h3 className="error">{error}</h3>
+      : null;
 
     return (
       <Container>
@@ -72,7 +85,8 @@ class App extends Component {
         <Dimmer active={loading} inverted>
           <Loader inverted>Loading</Loader>
         </Dimmer>
-        <BookList data={data} />
+        {data && <BookList data={data}/>}
+        {errorMessage}
       </Container>
     );
   }
