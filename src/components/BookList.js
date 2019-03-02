@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import BookDetail from './BookDetail';
 import { Grid, Card, Image } from 'semantic-ui-react';
+import noImage from '../assets/image_not_found.jpg';
 
 class BookList extends Component {
 
