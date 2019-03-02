@@ -17,6 +17,11 @@
   margin-left: 1rem;
 }
 
+.ui.card, .ui.cards>.card {  /* card width - single column */
+  /* width: 100%; */
+  margin: auto;
+}
+
 .ui.card .meta.authors,
 .ui.cards>.card .meta.authors {
   color: rgba(0,0,0,1.0);
