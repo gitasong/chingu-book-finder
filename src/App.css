@@ -40,6 +40,10 @@
     text-shadow: none;
 }
 
+.ui.modal .scrolling.content {  /* min height of modal content area */
+    min-height: calc(60vh);     /* set to incorporate height of images */
+}                               /* in vertical orientation */
+
 .ui.modal>.content>.icon+.description,
 .ui.modal>.content>.image+.description {
   width: 200%;
