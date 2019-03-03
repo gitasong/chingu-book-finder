@@ -12,16 +12,18 @@ class BookList extends Component {
       if (book.volumeInfo) {
         // breaks multiple authors into two lines on card,
         // single line w/space in-betwen on modal
-        const authorsArray = book.volumeInfo.authors[1]
+        const authorsArray = book.volumeInfo.authors
+          ? book.volumeInfo.authors[1]
           ? <>{book.volumeInfo.authors[0]}<br/>{book.volumeInfo.authors[1]}</>
-          : book.volumeInfo.authors[0];
+          : book.volumeInfo.authors[0]
+          : 'No author information available';
 
         return({
           id: book.id,
           thumbnail: book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : noImage,
           title: book.volumeInfo.title || 'No title available',
           subtitle: book.volumeInfo.subtitle ? ': ' + book.volumeInfo.subtitle : '',
-          authors: authorsArray || 'No author information available',
+          authors: authorsArray,
           publisher: book.volumeInfo.publisher || 'No publisher information available',
           pageCount: book.volumeInfo.pageCount || '?',
           averageRating: book.volumeInfo.averageRating || 'No ratings yet',
