@@ -12,7 +12,9 @@ class BookList extends Component {
       if (book.volumeInfo) {
         // breaks multiple authors into two lines on card,
         // single line w/space in-betwen on modal
-        const authorsArray = book.volumeInfo.authors[1] ? `${book.volumeInfo.authors[0]}\xa0\xa0\xa0 ${book.volumeInfo.authors[1]}` : `${book.volumeInfo.authors[0]}`;
+        const authorsArray = book.volumeInfo.authors[1]
+          ? <>{book.volumeInfo.authors[0]}<br/>{book.volumeInfo.authors[1]}</>
+          : book.volumeInfo.authors[0];
 
         return({
           id: book.id,
