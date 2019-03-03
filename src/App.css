@@ -61,6 +61,20 @@
     width: initial;
 } */
 
+.ui.modal h5.authors {
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+.ui.modal h6.publisher {
+  font-size: 1em;
+  color: rgba(0,0,0,0.4);
+  font-weight: normal;
+  font-variant: small-caps;
+  margin-block-start: 0;
+  margin-block-end: 1em;
+}
+
 .error {
   color: rgba(0,0,0,.5);
 }
